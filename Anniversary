@@ -1,0 +1,261 @@
+import { useState, useEffect } from "react";
+import { Heart, Music, Camera, Gift, MessageCircle, Moon, Stars } from "lucide-react";
+
+export default function SevenMonthLoveWebsite() {
+  const [currentPage, setCurrentPage] = useState("home");
+  const [typedText, setTypedText] = useState("");
+
+  const fullText = "7 months later... and I still choose you every single day ❤️";
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setTypedText(fullText.slice(0, index));
+      index++;
+
+      if (index > fullText.length) clearInterval(interval);
+    }, 60);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const memories = [
+    {
+      title: "First Conversation",
+      desc: "The day strangers slowly became something more.",
+      emoji: "💬",
+    },
+    {
+      title: "Our Funniest Moment",
+      desc: "The kind of laugh we still remember randomly.",
+      emoji: "😂",
+    },
+    {
+      title: "The Comfort",
+      desc: "Somehow you became my safe place.",
+      emoji: "🖤",
+    },
+    {
+      title: "7 Months",
+      desc: "Seven months of chaos, love, growth and memories.",
+      emoji: "❤️",
+    },
+  ];
+
+  const songs = [
+    "Until I Found You",
+    "Perfect",
+    "Those Eyes",
+    "I Wanna Be Yours",
+  ];
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "home":
+        return (
+          <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#ff4d88,_transparent_35%)] opacity-30" />
+
+            <div className="absolute top-10 left-10 animate-pulse">
+              <Stars className="w-10 h-10 text-pink-400" />
+            </div>
+
+            <div className="absolute bottom-10 right-10 animate-bounce">
+              <Heart className="w-12 h-12 text-pink-500 fill-pink-500" />
+            </div>
+
+            <div className="max-w-4xl z-10">
+              <h1 className="text-6xl md:text-8xl font-extrabold mb-6 text-pink-400 drop-shadow-lg">
+                Happy 7 Months
+              </h1>
+
+              <p className="text-xl md:text-3xl text-pink-100 mb-8 min-h-[50px]">
+                {typedText}
+              </p>
+
+              <button
+                onClick={() => setCurrentPage("letter")}
+                className="bg-pink-500 hover:bg-pink-600 transition-all px-8 py-4 rounded-full text-lg font-semibold shadow-2xl"
+              >
+                Open Our Story ❤️
+              </button>
+            </div>
+          </section>
+        );
+
+      case "letter":
+        return (
+          <section className="min-h-screen flex items-center justify-center px-6 py-20">
+            <div className="max-w-4xl bg-[#121212] border border-pink-500 rounded-[40px] p-10 shadow-[0_0_50px_rgba(255,20,147,0.3)]">
+              <h2 className="text-5xl font-bold text-pink-400 mb-10 text-center">
+                A Letter For You
+              </h2>
+
+              <div className="space-y-6 text-lg md:text-xl text-pink-100 leading-9">
+                <p>Dear Love,</p>
+
+                <p>
+                  I honestly didn’t expect someone to become this important to
+                  me in just seven months.
+                </p>
+
+                <p>
+                  We’ve had happy moments, dumb moments, emotional moments,
+                  random arguments, late-night talks, and memories I replay in
+                  my head more often than I admit.
+                </p>
+
+                <p>
+                  Thank you for existing in my life the way you do. Thank you
+                  for staying.
+                </p>
+
+                <p>
+                  Maybe seven months is small for the world — but for me, it’s
+                  enough to know that what we have matters.
+                </p>
+
+                <p className="text-pink-400 text-2xl pt-4">
+                  Happy 7 Months ❤️
+                </p>
+              </div>
+            </div>
+          </section>
+        );
+
+      case "memories":
+        return (
+          <section className="min-h-screen px-6 py-20">
+            <h2 className="text-5xl font-bold text-center text-pink-400 mb-16">
+              Our Memories
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {memories.map((memory, index) => (
+                <div
+                  key={index}
+                  className="bg-[#121212] border border-pink-500 rounded-3xl p-8 hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(255,20,147,0.2)]"
+                >
+                  <div className="text-5xl mb-5">{memory.emoji}</div>
+
+                  <h3 className="text-3xl font-bold text-pink-300 mb-4">
+                    {memory.title}
+                  </h3>
+
+                  <p className="text-pink-100 text-lg leading-8">
+                    {memory.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+
+      case "gallery":
+        return (
+          <section className="min-h-screen px-6 py-20">
+            <h2 className="text-5xl font-bold text-center text-pink-400 mb-16">
+              Our Gallery
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {[1, 2, 3, 4, 5, 6].map((item) => (
+                <div
+                  key={item}
+                  className="h-72 bg-gradient-to-br from-pink-500 to-black rounded-[30px] flex flex-col items-center justify-center border border-pink-400 hover:rotate-2 hover:scale-105 transition-all duration-300 shadow-2xl"
+                >
+                  <Camera className="w-12 h-12 text-pink-200 mb-4" />
+                  <p className="text-xl font-semibold text-pink-100">
+                    Add Your Photo
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+
+      case "music":
+        return (
+          <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
+            <h2 className="text-5xl font-bold text-pink-400 mb-14">
+              Songs That Feel Like Us
+            </h2>
+
+            <div className="space-y-6 w-full max-w-2xl">
+              {songs.map((song, index) => (
+                <div
+                  key={index}
+                  className="bg-[#121212] border border-pink-500 rounded-2xl p-6 flex items-center justify-between hover:bg-pink-950 transition-all"
+                >
+                  <div className="flex items-center gap-4">
+                    <Music className="text-pink-400" />
+                    <p className="text-xl text-pink-100">{song}</p>
+                  </div>
+
+                  <button className="bg-pink-500 px-5 py-2 rounded-full hover:bg-pink-600 transition-all">
+                    Play
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-black text-white font-sans overflow-hidden">
+      {/* Navbar */}
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-xl bg-black/50 border-b border-pink-500/30">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3 text-pink-400 text-2xl font-bold">
+            <Moon className="w-7 h-7" />
+            7 Months
+          </div>
+
+          <div className="flex gap-3 flex-wrap justify-end">
+            {[
+              ["home", "Home"],
+              ["letter", "Letter"],
+              ["memories", "Memories"],
+              ["gallery", "Gallery"],
+              ["music", "Music"],
+            ].map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setCurrentPage(key)}
+                className={`px-5 py-2 rounded-full transition-all border ${
+                  currentPage === key
+                    ? "bg-pink-500 border-pink-400"
+                    : "border-pink-500/40 hover:bg-pink-900/40"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      <div className="pt-24">{renderPage()}</div>
+
+      {/* Floating Love Note */}
+      <div className="fixed bottom-6 right-6 bg-pink-500 rounded-full p-5 shadow-2xl animate-bounce cursor-pointer hover:scale-110 transition-all">
+        <MessageCircle className="w-7 h-7" />
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t border-pink-500/20 py-10 text-center text-pink-200">
+        <div className="flex items-center justify-center gap-2 mb-3">
+          <Gift className="w-5 h-5" />
+          Made With Love
+        </div>
+
+        <p>Celebrating 7 beautiful months together ❤️</p>
+      </footer>
+    </div>
+  );
+}
