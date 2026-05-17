@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 Beautiful Months</title>
+    <!-- Importing Elegant Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-deep: #0a0708;
+            --pink-glow: #ff7eb3;
+            --pink-accent: #ff758c;
+            --text-main: #fcedf2;
+            --text-muted: #c4b1b8;
+            
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 126, 179, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 0%, rgba(255,117,140,0.08) 0%, transparent 50%), 
+                              radial-gradient(circle at 100% 100%, rgba(255,126,179,0.05) 0%, transparent 50%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        /* Floating Glass Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 7, 8, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 12px 25px;
+            border-radius: 50px;
+            z-index: 100;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            width: max-content;
+            max-width: 90%;
+            overflow-x: auto;
+        }
+
+        nav::-webkit-scrollbar { display: none; }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--pink-glow);
+            text-shadow: 0 0 10px rgba(255, 126, 179, 0.4);
+            background: rgba(255, 126, 179, 0.05);
+        }
+
+        /* Main Container */
+        main {
+            padding: 120px 20px 60px;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page {
+            display: none;
+            animation: floatUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes floatUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 126, 179, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(255, 126, 179, 0.1);
+        }
+
+        /* Background Hearts Animation */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -10%;
+            color: var(--pink-glow);
+            opacity: 0;
+            animation: floatHeart linear forwards;
+            filter: drop-shadow(0 0 5px rgba(255, 126, 179, 0.3));
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.2; }
+            100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Music Button */
+        #music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(10, 7, 8, 0.8);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 12px 24px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+            z-index: 100;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #music-btn:hover {
+            border-color: var(--pink-glow);
+            color: var(--pink-glow);
+            box-shadow: 0 0 15px rgba(255, 126, 179, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Home Page Elements */
+        #home {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--pink-glow), var(--pink-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #home p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 80%;
+            margin: 20px auto 0;
+        }
+
+        .beating-heart {
+            font-size: 4rem;
+            margin: 20px 0;
+            animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            filter: drop-shadow(0 0 15px rgba(255, 117, 140, 0.5));
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Timeline & Reasons */
+        .timeline { border-left: 2px solid var(--glass-border); margin-left: 20px; padding-left: 30px; position: relative; }
+        .timeline-item { margin-bottom: 40px; position: relative; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -37px; top: 5px; width: 12px; height: 12px;
+            border-radius: 50%; background: var(--pink-glow); box-shadow: 0 0 10px var(--pink-glow);
+        }
+        .timeline-item h3 { font-size: 1.8rem; color: var(--pink-glow); margin-bottom: 8px; }
+        
+        .reason-item { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid var(--glass-border); }
+        .reason-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .reason-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-style: italic; color: var(--pink-glow); line-height: 1; opacity: 0.8; }
+
+        /* 6-Photo Gallery Grid */
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
+            margin-top: 30px; 
+        }
+        
+        @media (min-width: 600px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .gallery-item {
+            position: relative; 
+            height: 200px; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center;
+            justify-content: center; 
+            background: rgba(255, 126, 179, 0.05);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images fit without stretching */
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover { 
+            border-color: var(--pink-glow); 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 25px rgba(255, 126, 179, 0.2);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1); /* Gentle zoom effect */
+        }
+
+        /* Letter Styling */
+        .letter-content { font-size: 1.1rem; color: var(--text-main); }
+        .letter-content p { margin-bottom: 20px; }
+        .signature { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--pink-glow); text-align: right; margin-top: 40px; text-shadow: 0 0 10px rgba(255, 126, 179, 0.3); }
+
+        .section-title { text-align: center; font-size: 2.8rem; margin-bottom: 40px; color: var(--text-main); }
+        .section-title span { font-style: italic; color: var(--pink-glow); }
+        
+        /* Fallback text for images that haven't loaded yet */
+        .img-fallback {
+            position: absolute;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Hearts -->
+    <div id="hearts-container"></div>
+
+    <!-- Hidden Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="your-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Music Button -->
+    <button id="music-btn" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span> <span id="music-text">Play Music</span>
+    </button>
+
+    <!-- Floating Navigation -->
+    <nav>
+        <a onclick="showPage('home')" class="nav-link active" id="nav-home">Home</a>
+        <a onclick="showPage('story')" class="nav-link" id="nav-story">Story</a>
+        <a onclick="showPage('gallery')" class="nav-link" id="nav-gallery">Gallery</a>
+        <a onclick="showPage('reasons')" class="nav-link" id="nav-reasons">Reasons</a>
+        <a onclick="showPage('future')" class="nav-link" id="nav-future">Future</a>
+        <a onclick="showPage('letter')" class="nav-link" id="nav-letter">Letter</a>
+    </nav>
+
+    <main>
+        <!-- Home -->
+        <section id="home" class="page active">
+            <h1>7 Beautiful Months</h1>
+            <div class="beating-heart">❤️</div>
+            <p>Half a year and a month of making memories, laughing too loud, and falling more in love.</p>
+        </section>
+
+        <!-- Our Story -->
+        <section id="story" class="page">
+            <h2 class="section-title">Our <span>Story</span></h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>The Beginning</h3>
+                    <p>That first day when everything shifted. (Add your memory of how you met or your first date here).</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>The Spark</h3>
+                    <p>(Add a funny or sweet memory of the exact moment you knew this was something incredibly special).</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Right Now</h3>
+                    <p>Seven months later, and you are still my favorite notification, my favorite thought, and my favorite person.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6-Photo Gallery -->
+        <section id="gallery" class="page">
+            <h2 class="section-title">Captured <span>Moments</span></h2>
+            <div class="glass-card">
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">
+                    Our favorite memories wrapped in pixels.
+                </p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <span class="img-fallback">Missing 1.jpg</span>
+                        <img src="1.jpg" alt="Memory 1">
+                    </div>
+                    <div class="gallery-item">
+                        <span class="img-fallback">Missing 2.jpg</span>
+                        <img src="2.jpg" alt="Memory 2">
+                    </div>
+                    <div class="gallery-item">
+                        <span class="img-fallback">Missing 3.jpg</span>
+                        <img src="3.jpg" alt="Memory 3">
+                    </div>
+                    <div class="gallery-item">
+                        <span class="img-fallback">Missing 4.jpg</span>
+                        <img src="4.jpg" alt="Memory 4">
+                    </div>
+                    <div class="gallery-item">
+                        <span class="img-fallback">Missing 5.jpg</span>
+                        <img src="5.jpg" alt="Memory 5">
+                    </div>
+                    <div class="gallery-item">
+                        <span class="img-fallback">Missing 6.jpg</span>
+                        <img src="6.jpg" alt="Memory 6">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reasons -->
+        <section id="reasons" class="page">
+            <h2 class="section-title">Why I <span>Love You</span></h2>
+            <div class="glass-card">
+                <div class="reason-item"><div class="reason-num">1</div><div>Your beautiful smile that instantly fixes any bad day I'm having.</div></div>
+                <div class="reason-item"><div class="reason-num">2</div><div>The way we can talk for hours about absolutely everything and nothing at all.</div></div>
+                <div class="reason-item"><div class="reason-num">3</div><div>How endlessly supportive you are of my goals and everything I try to build.</div></div>
+                <div class="reason-item"><div class="reason-num">4</div><div>Your kindness, and how deeply you care about the people around you.</div></div>
+                <div class="reason-item"><div class="reason-num">5</div><div>Because seven months in, you still give me butterflies every single time.</div></div>
+            </div>
+        </section>
+
+        <!-- Future -->
+        <section id="future" class="page">
+            <h2 class="section-title">Looking <span>Ahead</span></h2>
+            <div class="glass-card">
+                <div class="reason-item"><div class="reason-num" style="font-size: 1.5rem;">✨</div><div><strong>The Places:</strong> Visiting the destinations we've spent nights dreaming about.</div></div>
+                <div class="reason-item"><div class="reason-num" style="font-size: 1.5rem;">✨</div><div><strong>The Growth:</strong> Standing by each other's side through every obstacle and celebrating every victory.</div></div>
+                <div class="reason-item"><div class="reason-num" style="font-size: 1.5rem;">✨</div><div><strong>The Memories:</strong> Building a thousand more incredible moments just like the ones we already share.</div></div>
+            </div>
+        </section>
+
+        <!-- Letter -->
+        <section id="letter" class="page">
+            <h2 class="section-title">A <span>Note</span> For You</h2>
+            <div class="glass-card letter-content">
+                <p>My Love,</p>
+                <p>These past 7 months have genuinely been the best time of my life. Before you, I didn't know it was possible for things to just feel this <i>right</i>. You bring a sense of peace, excitement, and pure joy to my everyday life.</p>
+                <p>Thank you for being my rock, my biggest cheerleader, and my absolute best friend. Whether we are doing something huge or just sitting doing nothing at all, as long as I am with you, I am exactly where I want to be.</p>
+                <p>I love you.</p>
+                <div class="signature">Snehansh</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation Logic
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Music Logic
+        const audio = document.getElementById('bg-music');
+        const musicText = document.getElementById('music-text');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicText.innerText = 'Play Music';
+                musicIcon.innerText = '🎵';
+            } else {
+                let playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        musicText.innerText = 'Pause Music';
+                        musicIcon.innerText = '⏸️';
+                    }).catch(error => {
+                        alert("Please make sure you have added your .mp3 file to GitHub and named it correctly in the code!");
+                        isPlaying = false;
+                    });
+                }
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Floating Hearts Logic
+        function createHeart() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerText = '❤️';
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 1.5 + 0.5 + 'rem';
+            heart.style.animationDuration = Math.random() * 4 + 5 + 's';
+
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 9000); 
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
